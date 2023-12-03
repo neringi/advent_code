@@ -8,10 +8,10 @@ def reverse_string(string):
     return string[::-1]
 
 # Read in the input file
-file = open('/Users/ringi/Documents/code/advent_code_2023/input.txt','r')
+file = open('/Users/ringi/Documents/code/advent_code_2023/input_day1.txt','r')
 
 # Loop through each line to get the digits and the sum
-# with open('input.txt') as content:
+# with open('input_day1.txt') as content:
 #     # reset the sum
 #     sum = 0
 #     for i in content:
@@ -107,7 +107,7 @@ with open('input.txt') as content:
         elif findfirst > 0 :
             firstdigit = findfirst
         
-        # print(firstdigit)
+        print(firstdigit)
 
         reversed = reverse_string(i)
 
@@ -158,7 +158,7 @@ with open('input.txt') as content:
         # print(rfind9)
         rpositions.append(rfind9)
 
-        # print(rpositions)
+        print(rpositions)
 
         findlast = rpositions.index(max([i for i in rpositions if i >= 0]))
 
