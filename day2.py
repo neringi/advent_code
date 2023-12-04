@@ -1,4 +1,7 @@
+# ------ Part One ------
+
 import re
+from functools import reduce
 
 # maximum number of blocks per colour
 maxlist = [[12,'red'],[13,'green'],[14,'blue']]
@@ -7,39 +10,43 @@ maxlist = [[12,'red'],[13,'green'],[14,'blue']]
 # Read in the input file
 file = open('/Users/ringi/Documents/code/advent_code_2023/input_day2.txt','r')
 
-with open('input_day2.txt') as content:
-    # reset the sum
-    sum = 0
+# with open('input_day2.txt') as content:
+#     # reset the sum
+#     sum = 0
    
-    for line in content:
-        check = []
-        print("****************")
-        print(line)
-        game_id = line.split(':')[0]
-        # print(game_id)
-        game_num = re.search(r'\d+',game_id).group()
-        print(game_num)
-        games = line.split(':')[1].split(';')
-        for game in games: 
-            for round in game.split(', '):
-                [count, color] = round.split()
-                # print(count, color)
-                for maxno in maxlist:
-                    if color == maxno[1] and int(count) <= maxno[0] :
-                        # print(f"{count} <= {maxno[0]} for colour {maxno[1]}")
-                        # print('pass')
-                        check.append(1)
-                    elif color == maxno[1] and int(count) > maxno[0] :
-                        # print("fail")
-                        check.append(0)
-        # print(check)
-        if 0 not in check:
-            print("ok")
-            sum = sum + int(game_num)
+#     for line in content:
+#         check = []
+#         print("****************")
+#         print(line)
+#         game_id = line.split(':')[0]
+#         # print(game_id)
+#         game_num = re.search(r'\d+',game_id).group()
+#         print(game_num)
+#         games = line.split(':')[1].split(';')
+#         print(games)
+#         for game in games: 
+#             for round in game.split(', '):
+#                 [count, color] = round.split()
+#                 print(count, color)
+                
+#                 for maxno in maxlist:
+#                     if color == maxno[1] and int(count) <= maxno[0] :
+#                         # print(f"{count} <= {maxno[0]} for colour {maxno[1]}")
+#                         # print('pass')
+#                         check.append(1)
+#                     elif color == maxno[1] and int(count) > maxno[0] :
+#                         # print("fail")
+#                         check.append(0)
+#             print('end round')
 
-print(f"The sum is {sum}")
+#         # print(check)
+#         if 0 not in check:
+#             print("ok")
+#             sum = sum + int(game_num)
 
-file.close()
+# print(f"The sum is {sum}")
+
+# file.close()
 
 
 
@@ -95,3 +102,42 @@ file.close()
 #             elif item[1] == maxno[1] and item[0] > maxno[0] :
 #                 print("fail")
                
+
+# ------ Part Two ------
+
+
+def remove_char(lst, char):
+    return reduce(lambda x, y: x + [re.sub(char, '', y)], lst, [])
+ 
+
+with open('input_day2.txt') as content:
+    # reset the sum
+    sum = 0
+   
+    for line in content:
+        check = []
+        print("****************")
+        print(line)
+
+        gamesr = line.split(':')[1].split(';')
+        games = remove_char(gamesr,"\n")
+        # print(games)
+        
+        findmax = [[0,"green"],[0,"blue"],[0,"red"]]
+        for game in games: 
+            
+            for round in game.split(', '):
+                [count, color] = round.split()
+                # print(count, color)
+                
+                for maxno in findmax:
+                    if color == maxno[1] and int(count) > int(maxno[0]) :
+                        maxno[0] = int(count)
+        # print(findmax)
+        product = findmax[0][0] * findmax[1][0] * findmax[2][0]
+        print(f"product of cubes for game is {product}")
+        sum = sum + product
+
+print(f"The sum is {sum}")
+
+file.close()
