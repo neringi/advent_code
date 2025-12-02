@@ -8,7 +8,7 @@ def reverse_string(string):
     return string[::-1]
 
 # Read in the input file
-file = open('/Users/ringi/Documents/code/advent_code_2023/input_day1.txt','r')
+file = open('/Users/ringi/Documents/code/advent_code/2023/input_day1.txt','r')
 
 # Loop through each line to get the digits and the sum
 # with open('input_day1.txt') as content:

@@ -8,7 +8,7 @@ maxlist = [[12,'red'],[13,'green'],[14,'blue']]
 
 
 # Read in the input file
-file = open('/Users/ringi/Documents/code/advent_code_2023/input_day2.txt','r')
+file = open('/Users/ringi/Documents/code/advent_code/2023/input_day2.txt','r')
 
 # with open('input_day2.txt') as content:
 #     # reset the sum
