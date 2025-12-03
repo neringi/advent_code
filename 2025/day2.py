@@ -42,3 +42,4 @@ with open('input_day2.txt') as content:
             length = len(str(j))
 
             print(j, length)
+            
